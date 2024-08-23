@@ -7,3 +7,6 @@ O Projeto SHERLOCK visa automatizar o processo de retirada de produtos adquirido
 
 Detalhamento Técnico:
 De forma simplificada, o sistema funciona da seguinte maneira: o QR Code é escaneado por uma câmera ESP32-CAM, que envia os dados para um outro dispositivo ESP32. Este, por sua vez, processa a informação e verifica sua validade com base em um banco de dados. Se o código for válido, o ESP32 central aciona os relés que destravam as fechaduras eletrônicas, permitindo que a gaveta correspondente seja aberta.
+
+![image](https://github.com/user-attachments/assets/376c87d5-02d1-49ef-b004-cbfe3c4e4abf)
+
