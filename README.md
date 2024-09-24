@@ -1,5 +1,4 @@
-# Fetin
-Meu projeto da Fetin 2024. 
+# Projeto Fetin 2024
 
 --------Apresentação do Projeto SHERLOCK:
 
