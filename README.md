@@ -6,7 +6,7 @@ De forma simplificada, o sistema funciona assim: o QR Code é escaneado por uma 
 
 O sistema também registra o tempo de abertura e fechamento de cada gaveta, atualizando o banco de dados por meio do método "PUT" ou salvando essas informações no cartão SD do ESP32-CAM para que possam ser atualizadas quando a conexão Wi-Fi for restabelecida. Sempre que houver alteração nos dados dos clientes, essas informações são salvas na EEPROM do ESP32, garantindo que, em caso de reinício do sistema, os dados permaneçam disponíveis até que o produto seja retirado.
 
-Neste projeto, utilizei EEPROM, protocolos de comunicação SPI, I2C, ESPNOW e HTTP, além de programação em HTML para desenvolver as páginas web de parametrização. Também implementei OTA (Over The Air) e projetei o circuito eletrônico em protoplaca, otimizando a funcionalidade e a eficiência do sistema.
+Neste projeto, utilizei EEPROM, protocolos de comunicação SPI (cartão SD ESP32CAM), I2C (Display), ESPNOW e HTTP (API), além de programação em HTML para desenvolver as páginas web de parametrização. Também implementei OTA (Over The Air) e projetei o circuito eletrônico em protoplaca.
 
 ![image](https://github.com/user-attachments/assets/376c87d5-02d1-49ef-b004-cbfe3c4e4abf)
 
