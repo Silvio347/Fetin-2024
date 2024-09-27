@@ -1,12 +1,17 @@
 # Projeto Fetin 2024
 
-O Projeto SHERLOCK visa automatizar o processo de retirada de produtos adquiridos em e-commerce, oferecendo uma solução prática e segura para os clientes. O conceito é simples: o cliente final recebe um QR Code, que é utilizado para abrir uma gaveta onde seu produto está armazenado. Essas gavetas fazem parte de armários inteligentes distribuídos em locais estratégicos, como faculdades, mercados e outros locais que oferecem segurança. Assim, pessoas que têm dificuldade em receber suas encomendas em casa podem optar por retirar seus produtos nesses armários, enquanto os entregadores utilizam um QR Code diferente para depositar as mercadorias nas gavetas designadas.
+O Projeto SherLock tem como objetivo automatizar a retirada de produtos adquiridos em e-commerce, oferecendo uma solução prática e segura para os clientes. Com um simples QR Code, o cliente pode abrir uma gaveta em armários inteligentes localizados em pontos estratégicos, como faculdades e supermercados, facilitando a retirada de encomendas. Isso é especialmente benéfico para aqueles que enfrentam dificuldades em receber entregas em casa.
 
-De forma simplificada, o sistema funciona assim: o QR Code é escaneado por uma câmera ESP32-CAM, que envia os dados para um dispositivo ESP32. Este, por sua vez, processa a informação e verifica sua validade com base em um banco de dados. Se o código for válido, o ESP32 central aciona os relés que destravam as fechaduras eletrônicas, permitindo a abertura da gaveta correspondente. Além disso, por meio do IP do ESP32, é possível acessar uma página web que contém campos para parametrização, monitoramento dos sensores, gravação de firmware à distância (OTA) e abertura das gavetas. Essa página é acessível mesmo na ausência de conexão Wi-Fi após a detecção de um QR Code com um comando específico, fazendo o ESP32 gerar um hotspot. É importante notar que o acesso a essa página requer uma senha.
+Nesse projeto, explorei principalmente alguns conceitos técnicos em sistemas embarcados, como:
 
-O sistema também registra o tempo de abertura e fechamento de cada gaveta, atualizando o banco de dados por meio do método "PUT" ou salvando essas informações no cartão SD do ESP32-CAM para que possam ser atualizadas quando a conexão Wi-Fi for restabelecida. Sempre que houver alteração nos dados dos clientes, essas informações são salvas na EEPROM do ESP32, garantindo que, em caso de reinício do sistema, os dados permaneçam disponíveis até que o produto seja retirado.
+🌟 FreeRTOS: para gerenciar o escaneamento de QR Codes no ESP32CAM
+🔒 ESPNOW: para comunicação sem fio entre os ESP32, garantindo segurança com criptografia e lógica de pareamento no mesmo canal WiFi
+🌐 OTA (Over The Air): para atualizações de firmware via uma interface web, facilitando suporte e manutenção
+📄 HTML: para a criação de páginas que permitem redefinir parâmetros e abrir gavetas
+💾 EEPROM: para armazenamento de configurações de conexão WiFi e dados dos clientes
+📡 Protocolos de Comunicação: como I2C, SPI e HTTP para interações com dispositivos e APIs
 
-Neste projeto, utilizei EEPROM, protocolos de comunicação SPI (cartão SD ESP32CAM), I2C (Display), ESPNOW e HTTP (API), além de programação em HTML para desenvolver as páginas web de parametrização. Também implementei OTA (Over The Air) e projetei o circuito eletrônico em protoplaca.
+O SherLock não só desafiou minhas habilidades, mas também me proporcionou um rico aprendizado em tecnologias inovadoras.
 
 ![image](https://github.com/user-attachments/assets/376c87d5-02d1-49ef-b004-cbfe3c4e4abf)
 
