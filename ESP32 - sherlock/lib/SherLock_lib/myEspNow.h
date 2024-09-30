@@ -1,28 +1,29 @@
-#ifndef __sdcard__
-#define __sdcard__
+#ifndef __MYESPNOW_H__
+#define __MYESPNOW_H__
 
-#include "FS.h"     // SD Card ESP32
-#include "SD_MMC.h" // SD Card ESP32
-#include "time.h"
-#include "soc/soc.h"
-#include "driver/rtc_io.h"
+#include <esp_now.h>
+#include <Arduino.h>
 #include <globais.h>
+#include <variaveis.h>
 #include <WiFi.h>
+#include <myWeb.h>
 
-//----------------------------------------------------PROTÓTIPOS-----------------------------------------
+extern esp_now_peer_info_t peerInfo;
+void OnDataSent(const uint8_t *mac_addr, esp_now_send_status_t status);
+void OnDataRecv(const uint8_t *mac_addr, const uint8_t *data, int len);
 
 //***************************************************************************************************
-// Function  : Faz o setup do cartão SD
+// Function  : Faz a configuração do ESP-NOW
 // Arguments : none
 // Return    : none
 //***************************************************************************************************
-void setupSDCard(void);
+void setupEspNow();
 
 //***************************************************************************************************
-// Function  : Tira uma foto e salva no cartão SD
-// Arguments : O trem pra salvar
+// Function  : Delete o peer e pareia novamente
+// Arguments : none
 // Return    : none
 //***************************************************************************************************
-void SaveSDCard(String info);
+void delPeerAndPair();
 
 #endif

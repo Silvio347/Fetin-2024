@@ -9,17 +9,20 @@
 #define SHOW_IP_COMMAND "mostreip"                              // Crie um QR Code com esse texto para exibir os IPs dos ESPs
 #define SHOW_DISTANCE_SENSOR_COMMAND "distanceSensor"           // Crie um QR Code com esse texto para exibir a medição dos sensores
 #define PARAMETERS_COMMAND "parametros."                        // Chega esse comando com o ssid, password, ip e porta da API
-#define TAKE_PHOTO_COMMAND "save;"                              // Chega esse comando com o ssid, password, ip e porta da API
 #define PASSCODE_COMMAND "passcode/"                            // Recebe essa string junto com o passcode
 #define KEEP_ALIVE_COMMAND "keepalive+"                         // Envia e recebe essa string para zerar o contador do keep alive
 #define RESET_ESP_COMMAND "reinicia"                            // Envia e recebe essa string para reiniciar o ESP
 #define CREATE_AP_COMMAND "crieAP"                              // Crie um QR Code com esse texto para criar AP nos dois esps
 #define DELETE_AP_COMMAND "deleteAP"                            // Crie um QR Code com esse texto para deletar os APs
 #define WIFI_BEGIN_COMMAND "crieWifi"                           // Crie um QR Code com esse texto para tentar conectar ao wifi dnv
+#define SAVE_COMMAND "save;"                                    // Chega esse comando para atualizar os dados no cartão sd
+#define UPDATE_COMMAND "update;"                                // Chega esse comando para atualizar API com infos salvas no sd do esp32cam
 
 // Time-out dos contadores
-#define TIMEOUT_KEEPALIVE 10 // Tempo limite em segundos para aguardar mensagem do esp32
-#define WDT_TIMER 10         // Time-out do WDT
+#define TIMEOUT_KEEPALIVE 30 // Tempo limite em segundos para aguardar mensagem do esp32
+#define WDT_TIMER 20         // Time-out do WDT
+#define TIMEOUT_WIFI 10      // Tempo em segundos para tentar conectar ao wifi
+#define TIME_UPDT_API 600    // Tempo em segundos para att a API
 
 // Parâmetros
 #define PASSWORD_SITE "1234"
@@ -32,9 +35,8 @@
 #define PASSWORD_MAX_LENGTH 32
 #define SERVER_IP_ADDRESS (PASSWORD_ADDRESS + PASSWORD_MAX_LENGTH)
 #define SERVER_IP_MAX_LENGTH 16
-#define PART_BOUNDARY "123456789000000000000987654321" // Transmissão de vídeo
-static const char *PMK_KEY_STR = "00XXmkwei/lpPÇf";    // Criptografia
-static const char *LMK_KEY_STR = "00XXmkwei/lpPÇf";    // Criptografa
+static const char *PMK_KEY_STR = "00XXmkwei/lpPÇf"; // Criptografia
+static const char *LMK_KEY_STR = "00XXmkwei/lpPÇf"; // Criptografa
 
 //***************************************************************************************************
 // Function  : Faz o setup da configuração WiFi
@@ -42,34 +44,6 @@ static const char *LMK_KEY_STR = "00XXmkwei/lpPÇf";    // Criptografa
 // Return    : none
 //***************************************************************************************************
 void setupWifi(void);
-
-//***************************************************************************************************
-// Function  : Faz o setup do cartão SD
-// Arguments : none
-// Return    : none
-//***************************************************************************************************
-void setupSDCard(void);
-
-//***************************************************************************************************
-// Function  : Obtém o nome do arquivo para salvar a foto baseado no tempo se obtido
-// Arguments : none
-// Return    : Retorna o tempo data/hora para o nome do arquivo
-//***************************************************************************************************
-String getPictureFilename(void);
-
-//***************************************************************************************************
-// Function  : Conecta ao NTP server e ajusta o tempo (tem que ter WiFi)
-// Arguments : A string do tempo para pegar do servidor
-// Return    : none
-//***************************************************************************************************
-void initTime(String timezone);
-
-//***************************************************************************************************
-// Function  : Faz o Setup do tempo
-// Arguments : A string do tempo para pegar do servidor
-// Return    : none
-//***************************************************************************************************
-void setTimezone(String timezone);
 
 //***************************************************************************************************
 // Function  : Faz a função do delay mas sem travar o ESP
@@ -97,30 +71,7 @@ void mySendEspNow(String data);
 // Arguments : none
 // Return    : none
 //***************************************************************************************************
-void uploadFotos();
-
-//***************************************************************************************************
-// Function  : Tira uma foto e salva no cartão SD
-// Arguments : none
-// Return    : none
-//***************************************************************************************************
-void SaveSDCard();
-
-//***************************************************************************************************
-// Function  : Setup das páginas WEB
-// Arguments : none
-// Return    : none
-//***************************************************************************************************
-void setupWeb(void);
-
-//***************************************************************************************************
-// Function  : Cria o AP se tiver sem wifi
-// Arguments : none
-// Return    : none
-//***************************************************************************************************
-void createAP();
-
-void startCameraServer();
+void uploadDados();
 
 // Tasks de tempo
 void task_5ms(void);

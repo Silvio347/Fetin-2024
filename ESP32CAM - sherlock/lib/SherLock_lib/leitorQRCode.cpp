@@ -37,7 +37,7 @@ void setupCamera()
   
   config.pixel_format = PIXFORMAT_GRAYSCALE;
   config.frame_size = FRAMESIZE_QVGA;
-  config.xclk_freq_hz = 30000000;
+  config.xclk_freq_hz = 20000000;
   config.jpeg_quality = 1;
   config.fb_count = 1;
 
@@ -45,7 +45,7 @@ void setupCamera()
   esp_err_t err = esp_camera_init(&config);
   if (err != ESP_OK)
   {
-    Serial.printf("Falha na inicialização da câmera com erro 0x%x", err);
+    // Serial.printf("Falha na inicialização da câmera com erro 0x%x", err);
     ESP.restart();
   }
 
@@ -80,14 +80,14 @@ void processQRCode()
   q = quirc_new();
   if (q == NULL)
   {
-    Serial.print("Não foi possível criar o objeto quirc\r\n");
+    // Serial.print("Não foi possível criar o objeto quirc\r\n");
     return;
   }
 
   fb = esp_camera_fb_get();
   if (!fb)
   {
-    Serial.println("Falha na captura da câmera");
+    // Serial.println("Falha na captura da câmera");
     return;
   }
 
