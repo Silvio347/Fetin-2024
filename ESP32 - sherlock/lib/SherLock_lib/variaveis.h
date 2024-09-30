@@ -1,23 +1,33 @@
-#ifndef __variaveis__
-#define __variaveis__
+#ifndef __VARIAVEIS_H_
+#define __VARIAVEIS_H_
 
+#include <globais.h>
 #include <Arduino.h>
+#include <bsp.h>
 
-bool drawer1Opened = false;                      // Flag usada para verificar se a gaveta 1 está aberta
-bool drawer2Opened = false;                      // Flag usada para verificar se a gaveta 2 está aberta
-String myTimezone = "WET0WEST,M3.5.0/1,M10.5.0"; // Formato do tempo para requisitar ao servidor
-uint16_t contadorAPI = 0;                        // Contador para atualizar os dados dos clientes
-uint8_t contadorLCD = 0;                         // Contador para desligar o LCD quando houver inatividade
-uint8_t contadorBeep = 0;                        // Contador para ligar o buzzer quando a gaveta estiver aberta
-String serverPort = "8080";                      // Porta da API
-String serverIP = "192.168.0.104";               // IP da API
-String ssid = "BlueEngineering";                 // Nome da rede WiFi
-String password = "santarita2023//";             // Senha da rede WiFi
-uint8_t senderMAC[6] = {0};                      // Variável para armazenar o MAC do emissor
-uint8_t statePair = 0;                           // Estado de pareamento (0 - não parado, 1 - pareado)
-float distanceSensor[NUM_PRODUCTS] = {0};        // Distância de cada sensor para atualizar a página web
-uint8_t keepAlive = 0;                           // Contador do keep alive
-bool apActive = false;                           // Indicador de quando está como AP ou WiFi
-uint16_t contadorWifi = 0;                       // Conta um tempo para ficar verificando o status de conexão do wifi
+extern bool drawer1Opened;                     
+extern bool drawer2Opened;                     
+extern String myTimezone;
+extern uint16_t contadorAPI;                      
+extern uint8_t contadorLCD;                      
+extern uint8_t contadorBeep;                      
+extern String serverPort;                     
+extern String serverIP;              
+extern String ssid;                
+extern String password;            
+extern uint8_t senderMAC[6];                     
+extern uint8_t statePair;                          
+extern float distanceSensor[2];       
+extern uint8_t keepAlive;                          
+extern bool apActive;                          
+extern uint16_t contadorWifi;                   
+extern char timeString[20];
+extern bool wificonnect;
+extern bool foiEntregue[2];
+extern bool atualizaAPI1;
+extern bool atualizaAPI2;
+extern bool jaConectouUmaVez;
+extern bool jaSalvou;
+extern bool conetado;
 
 #endif

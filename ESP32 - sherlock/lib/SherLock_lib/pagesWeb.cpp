@@ -1,13 +1,10 @@
-#ifndef __pagesWeb__
-#define __pagesWeb__
+#include <pagesWeb.h>
 
-#include <Arduino.h>
-
-// Páginas HTML utilizadas no procedimento OTA
+// Páginas HTML utilizadas
 String verifica = R"(<!DOCTYPE html>
 <html>
 <head>
-    <title>ESP32CAM Configs</title>
+    <title>ESP32 Configs</title>
     <meta charset='UTF-8'>
     <style>
         body {
@@ -70,7 +67,7 @@ String verifica = R"(<!DOCTYPE html>
     </style>
 </head>
 <body>
-    <h1>ESP32CAM Configs</h1>
+    <h1>ESP32 Configs</h1>
     <form method='POST' action='/avalia' enctype='multipart/form-data'>
         <label style='color:white;'>Autorização:</label>
         <input type='text' name='autorizacao'>
@@ -82,72 +79,11 @@ String verifica = R"(<!DOCTYPE html>
 </body>
 </html>)";
 
-String Resultado_Ok = "<!DOCTYPE html><html><head><title>ESP32CAM Configs</title><meta charset='UTF-8'><style>body{background-color:black;color:white;text-align:center;font-family:Arial,sans-serif;position:relative;height:100vh;display:flex;flex-direction:column;justify-content:center}h1{margin-top:20px}h2{margin:auto}#siteName{position:absolute;bottom:10px;right:10px}</style></head><body><h1>ESP32CAM Configs</h1><h2>Atualização bem sucedida!</h2><div id='siteName'><p style='color:white;'>Para mais informações, acesse: <a href='http://www.sherlock.com' style='text-decoration:underline;'>www.sherlock.com</a></p></div></body></html>";
-String Resultado_Falha = R"(
-<!DOCTYPE html>
-<html>
-<head>
-    <title>ESP32CAM Configs</title>
-    <meta charset='UTF-8'>
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            text-align: center;
-            font-family: Arial, sans-serif;
-            position: relative;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        h1 {
-            margin-top: 20px;
-        }
-
-        #siteName {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-        }
-
-        #backButton {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #333;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        #backButton:hover {
-            background-color: #555;
-        }
-
-        #failureMessage {
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
-<body>
-    <h2 id='failureMessage'>Falha durante a atualização. A versão anterior do firmware será recarregada.</h2>
-    <form action='/serverIndex'>
-        <input id='backButton' type='submit' value='Voltar à seleção de firmware'>
-    </form>
-    <div id='siteName'>
-        <p style='color:white;'>Para mais informações, acesse: <a href='http://www.sherlock.com' style='text-decoration:underline;'>www.sherlock.com</a></p>
-    </div>
-</body>
-</html>
-)";
-
 String serverIndex = R"rawliteral(
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Parâmetros ESP32CAM</title>
+    <title>Parâmetros ESP32</title>
     <meta charset='UTF-8'>
     <style>
         body {
@@ -225,9 +161,10 @@ String serverIndex = R"rawliteral(
         }
         .button-container {
             display: flex;
-            justify-content: center;
-            gap: 20px;
+            justify-content: center; /* Centraliza todos os botões */
+            gap: 10px; /* Espaçamento entre os botões */
             margin-top: 30px;
+            flex-wrap: wrap; /* Permite que os botões se movam para a linha seguinte se necessário */
         }
         .wifi-parameters, .api-parameters {
             font-size: 20px;
@@ -262,22 +199,11 @@ String serverIndex = R"rawliteral(
             margin-right: 10px;
             text-align: right;
         }
-        #videoContainer {
-            display: none;
-            margin-top: 20px;
-        }
-        #videoStream {
-            width: 100%;
-            max-width: 640px;
-            border: 2px solid white;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <h1>Parâmetros ESP32CAM</h1>
+    <h1>Parâmetros ESP32</h1>
     <form method='POST' action='/update' enctype='multipart/form-data'>
         <div class="file-upload-container">
             <label for='file' style='color:white;'>Firmware:</label>
@@ -285,26 +211,44 @@ String serverIndex = R"rawliteral(
             <button type='button' onclick='document.getElementById("fileInput").click();'>Escolher Arquivo</button>
             <input type='submit' value='Atualizar'>
         </div>
+        <div class="wifi-parameters">Parâmetros do Wi-Fi</div>
+        <div class="input-container">
+            <label for='ssid' style='color:white;'>SSID:</label>
+            <input type='text' name='ssid' placeholder='Digite o SSID'>
+        </div>
+        <div class="input-container">
+            <label for='password' style='color:white;'>Senha:</label>
+            <input type='password' name='password' placeholder='Digite a senha'>
+        </div>
+        <div class="api-parameters">Parâmetros de conexão com API</div>
+        <div class="input-container">
+            <label for='serverIP' style='color:white;'>IP:</label>
+            <input type='text' name='serverIP' placeholder='Digite o IP'>
+        </div>
+        <div class="input-container">
+            <label for='newField2' style='color:white;'>Porta:</label>
+            <input type='text' name='newField2' placeholder='Digite a Porta'>
+        </div>
         <div class="button-container">
-            <button type='button' id='startStream'>Iniciar transmissão</button>
-            <button type='button' id='button1'><i class="fa fa-cabinet"></i>Salvar fotos</button>
-            <button type='button' id='button2'><i class="fa fa-cabinet"></i>Encerrar transmissão</button>
+            <button type='button' id='saveParams'>Salvar Parâmetros</button>
+            <button type='button' id='button1'><i class="fa fa-cabinet"></i> Abrir gaveta 1</button>
+            <button type='button' id='button2'><i class="fa fa-cabinet"></i> Abrir gaveta 2</button>
+            <button type='button' id='uploadSD'>Upload cartão SD</button>
         </div>
     </form>
-
-    <div id="videoContainer">
-        <video id="videoStream" autoplay></video>
-    </div>
-
+    <div id="sensor-data" style="margin-top: 40px;">
+        <h2>Leitura dos Sensores</h2>
+        <p>Distância Sensor 1: <span id="distance1">Aguardando...</span> cm</p>
+        <p>Distância Sensor 2: <span id="distance2">Aguardando...</span> cm</p>
+    </div>  
     <footer>
         <div class="footer-left">
             <p>&copy; 2024 SherLock. Todos os direitos reservados.</p>
         </div>
         <div class="footer-right">
-            <p>Para mais informações, acesse: <a href='http://www.sherlock.com' style='text-decoration: underline;'>www.sherlock.com</a></p>
+            <p>Para mais informações, acesse: <a href='http://www.sherlockk.com' style='text-decoration: underline;'>www.sherlock.com</a></p>
         </div>
     </footer>
-
     <script>
         function updateFileName() {
             var fileInput = document.getElementById('fileInput');
@@ -316,6 +260,7 @@ String serverIndex = R"rawliteral(
         function handleResponse(response) {
             response.text().then(text => {
                 console.log(text);
+                // Exibe uma mensagem de sucesso ou erro na página
                 alert(text);
             }).catch(error => {
                 console.error('Erro ao processar a resposta:', error);
@@ -323,20 +268,20 @@ String serverIndex = R"rawliteral(
             });
         }
 
-        document.getElementById('startStream').addEventListener('click', function() {
-            fetch('/InitTransmition', { method: 'POST' })
-                .then(() => {
-                    document.getElementById('videoContainer').style.display = 'block';
-                    document.getElementById('videoStream').src = '/stream';
-                })
-                .catch(error => {
-                    console.error('Erro ao iniciar a transmissão:', error);
-                    alert('Ocorreu um erro ao iniciar a transmissão.');
-                });
+        document.getElementById('saveParams').addEventListener('click', function() {
+            fetch('/saveParams', { 
+                method: 'POST', 
+                body: new FormData(document.querySelector('form'))
+            })
+            .then(handleResponse)
+            .catch(error => {
+                console.error('Erro na solicitação:', error);
+                alert('Ocorreu um erro na solicitação.');
+            });
         });
 
         document.getElementById('button1').addEventListener('click', function() {
-            fetch('/uploadFotos', { method: 'POST' })
+            fetch('/gaveta1', { method: 'POST' })
                 .then(handleResponse)
                 .catch(error => {
                     console.error('Erro na solicitação:', error);
@@ -345,19 +290,96 @@ String serverIndex = R"rawliteral(
         });
 
         document.getElementById('button2').addEventListener('click', function() {
-                fetch('/EndTransmition', { method: 'POST' })
-                .then(() => {
-                    document.getElementById('videoContainer').style.display = 'none';
-                    document.getElementById('videoStream').src = '';
-                })
+            fetch('/gaveta2', { method: 'POST' })
+                .then(handleResponse)
                 .catch(error => {
-                    console.error('Erro ao encerrar a transmissão:', error);
-                    alert('Ocorreu um erro ao encerrar a transmissão.');
+                    console.error('Erro na solicitação:', error);
+                    alert('Ocorreu um erro na solicitação.');
                 });
         });
+
+        document.getElementById('uploadSD').addEventListener('click', function() {
+            fetch('/updateImages', { method: 'POST' })
+                .then(handleResponse)
+                .catch(error => {
+                    console.error('Erro na solicitação:', error);
+                    alert('Ocorreu um erro na solicitação.');
+                });
+        });
+
+        function updateSensorData() {
+            fetch('/getSensorData')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('distance1').textContent = data.distance1;
+                    document.getElementById('distance2').textContent = data.distance2;
+                })
+                .catch(error => console.error('Erro ao atualizar os dados dos sensores:', error));
+        }
+
+        // Atualiza os dados dos sensores a cada segundo
+        setInterval(updateSensorData, 1000);
     </script>
 </body>
 </html>
 )rawliteral";
+String Resultado_Ok = "<!DOCTYPE html><html><head><title>ESP32 Configs</title><meta charset='UTF-8'><style>body{background-color:black;color:white;text-align:center;font-family:Arial,sans-serif;position:relative;height:100vh;display:flex;flex-direction:column;justify-content:center}h1{margin-top:20px}h2{margin:auto}#siteName{position:absolute;bottom:10px;right:10px}</style></head><body><h1>ESP32 Configs</h1><h2>Atualização bem sucedida!</h2><div id='siteName'><p style='color:white;'>Para mais informações, acesse: <a href='http://www.sherlockk.com' style='text-decoration:underline;'>www.sherlockk.com</a></p></div></body></html>";
+String Resultado_Falha = R"(
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ESP32 Configs</title>
+    <meta charset='UTF-8'>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-#endif
+        h1 {
+            margin-top: 20px;
+        }
+
+        #siteName {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        #backButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #backButton:hover {
+            background-color: #555;
+        }
+
+        #failureMessage {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2 id='failureMessage'>Falha durante a atualização. A versão anterior do firmware será recarregada.</h2>
+    <form action='/serverIndex'>
+        <input id='backButton' type='submit' value='Voltar à seleção de firmware'>
+    </form>
+    <div id='siteName'>
+        <p style='color:white;'>Para mais informações, acesse: <a href='http://www.sherlockk.com' style='text-decoration:underline;'>www.sherlock.com</a></p>
+    </div>
+</body>
+</html>
+)";

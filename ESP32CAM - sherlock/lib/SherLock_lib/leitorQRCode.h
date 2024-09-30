@@ -1,11 +1,9 @@
-#ifndef __leitorQRCode__
-#define __leitorQRCode_H__
+#ifndef __LEITOR_QRCODE_H__
+#define __LEITOR_QRCODE_H__
 
 #include "esp_camera.h"
 #include "quirc.h"
 #include <globais.h>
-
-#define LED_PIN 4 // Led do ESP32CAM
 
 //------------------------------------------------------CÂMERA-------------------------------------------
 
