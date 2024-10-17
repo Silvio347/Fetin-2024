@@ -16,7 +16,9 @@ Nesse projeto, explorei principalmente alguns conceitos técnicos em sistemas em
 
 📡 Protocolos de Comunicação: como I2C, SPI e HTTP para interações com dispositivos e APIs
 
-O SherLock não só desafiou minhas habilidades, mas também me proporcionou um rico aprendizado em tecnologias inovadoras.
+O SherLock não só desafiou minhas habilidades, mas também me proporcionou um rico aprendizado em tecnologias inovadoras. 
+
+Demonstração: https://youtube.com/shorts/E90rJQIFKBg
 
 ![image](https://github.com/user-attachments/assets/376c87d5-02d1-49ef-b004-cbfe3c4e4abf)
 
