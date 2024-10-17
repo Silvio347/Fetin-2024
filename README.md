@@ -6,7 +6,7 @@ Nesse projeto, explorei principalmente alguns conceitos técnicos em sistemas em
 
 🌟 FreeRTOS: para gerenciar o escaneamento de QR Codes no ESP32CAM e obtenção de informações dos clientes através da API no ESP32
 
-🔒 ESPNOW: para comunicação sem fio entre os ESP32, garantindo segurança com criptografia e lógica de pareamento no mesmo canal WiFi
+🔒 ESPNOW: para comunicação sem fio entre o ESP32 e ESP32CAM, garantindo segurança com criptografia e lógica de pareamento no mesmo canal WiFi
 
 🌐 OTA (Over The Air): para atualizações de firmware via uma interface web, facilitando suporte e manutenção
 
