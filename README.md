@@ -20,5 +20,8 @@ O SherLock não só desafiou minhas habilidades, mas também me proporcionou um 
 
 Demonstração: https://youtube.com/shorts/E90rJQIFKBg
 
+![image](https://github.com/user-attachments/assets/51627005-1dd0-454f-a0be-a7dc91e8bcde)
+![image](https://github.com/user-attachments/assets/4d0ac1b3-f1fe-4182-9158-e3a8fb2e6578)
+
 ![image](https://github.com/user-attachments/assets/376c87d5-02d1-49ef-b004-cbfe3c4e4abf)
 
