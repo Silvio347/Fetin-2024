@@ -16,6 +16,12 @@ Nesse projeto, explorei principalmente alguns conceitos técnicos em sistemas em
 
 📡 Protocolos de Comunicação: como I2C, SPI e HTTP para interações com dispositivos e APIs
 
+Já no Backend contamos com:
+- Java com Spring Boot para desenvolver a API;
+- RabbitMQ para a mensageria;
+- PostgreSQL como banco de dados;
+- Docker para construir e facilitar a integração e deploy do projeto.
+
 O SherLock não só desafiou minhas habilidades, mas também me proporcionou um rico aprendizado em tecnologias inovadoras. 
 
 Demonstração: https://youtube.com/shorts/E90rJQIFKBg
