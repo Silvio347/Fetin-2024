@@ -1,30 +1,33 @@
-# Projeto Fetin 2024
+# Fetin 2024 Project
 
-O Projeto SherLock tem como objetivo automatizar a retirada de produtos adquiridos em e-commerce, oferecendo uma solução prática e segura para os clientes. Com um simples QR Code, o cliente pode abrir uma gaveta em armários inteligentes localizados em pontos estratégicos, como faculdades e supermercados, facilitando a retirada de encomendas. Isso é especialmente benéfico para aqueles que enfrentam dificuldades em receber entregas em casa.
+The SherLock Project aims to automate the retrieval of e-commerce purchases, providing customers with a practical and secure solution. With a simple QR Code, customers can unlock a compartment in smart lockers located in strategic spots such as universities and supermarkets, making package pickups more convenient. This is especially beneficial for those who face challenges in receiving home deliveries.
 
-Nesse projeto, explorei principalmente alguns conceitos técnicos em sistemas embarcados, como:
+In this project, I explored key technical concepts in embedded systems, such as:
 
-🌟 FreeRTOS: para gerenciar o escaneamento de QR Codes no ESP32CAM e obtenção de informações dos clientes através da API no ESP32
+🌟 FreeRTOS: To manage QR Code scanning on the ESP32CAM and retrieve customer information via the API on the ESP32.
 
-🔒 ESPNOW: para comunicação sem fio entre o ESP32 e ESP32CAM, garantindo segurança com criptografia e lógica de pareamento no mesmo canal WiFi
+🔒 ESP-NOW: For wireless communication between the ESP32 and ESP32CAM, ensuring security with encryption and pairing logic on the same WiFi channel.
 
-🌐 OTA (Over The Air): para atualizações de firmware via uma interface web, facilitando suporte e manutenção
+🌐 OTA (Over The Air): For firmware updates via a web interface, simplifying support and maintenance.
 
-📄 HTML: para a criação de páginas que permitem redefinir parâmetros e abrir gavetas
+📄 HTML: To create pages that allow parameter reconfiguration and compartment unlocking.
+💾 EEPROM: For storing WiFi connection configurations and customer data.
 
-💾 EEPROM: para armazenamento de configurações de conexão WiFi e dados dos clientes
+📡 Communication Protocols: Including I2C, SPI, and HTTP for device and API interactions.
 
-📡 Protocolos de Comunicação: como I2C, SPI e HTTP para interações com dispositivos e APIs
+On the Backend, we used:
 
-Já no Backend contamos com:
-- Java com Spring Boot para desenvolver a API;
-- RabbitMQ para a mensageria;
-- PostgreSQL como banco de dados;
-- Docker para construir e facilitar a integração e deploy do projeto.
+- Java with Spring Boot: To develop the API.
 
-O SherLock não só desafiou minhas habilidades, mas também me proporcionou um rico aprendizado em tecnologias inovadoras. 
+- RabbitMQ: For messaging.
 
-Demonstração: https://youtube.com/shorts/E90rJQIFKBg
+- PostgreSQL: As the database.
+
+- Docker: To streamline integration and deployment.
+
+SherLock not only challenged my skills but also provided a rich learning experience in innovative technologies.
+
+Demo: https://youtube.com/shorts/E90rJQIFKBg
 
 ![image](https://github.com/user-attachments/assets/51627005-1dd0-454f-a0be-a7dc91e8bcde)
 ![image](https://github.com/user-attachments/assets/4d0ac1b3-f1fe-4182-9158-e3a8fb2e6578)
